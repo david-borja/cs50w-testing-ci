@@ -59,7 +59,7 @@ class FlightTestCase(TestCase): # FlightTestCase is a subclass of TestCase
         self.assertEqual(response.status_code, 200)
 
     def test_invalid_flight_page(self):
-        max_id = Flight.objects.all().aggregate(Max("id"))["id__max"]
+        max_id = Flight.objects.all().aggregate(Max("id"))["id__max"] # id__max gives us the max id in our data
 
         c = Client()
         response = c.get(f"/flights/{max_id + 1}")
